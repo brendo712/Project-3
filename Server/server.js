@@ -22,7 +22,7 @@ mongoose.connection.once('open', ()=>{
 
 const lobbiesController = require('./controllers/lobbies.js')
 
-app.use('/lobbies', lobbiessController)
+app.use('/lobbies', lobbiesController)
 
 app.listen(PORT, () => {
   console.log('express listening on port', PORT)
