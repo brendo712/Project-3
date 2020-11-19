@@ -1,10 +1,11 @@
-
+import React from 'react';
 import './App.css';
+import LobbyContainer from './LobbyContainer';
 
 function App() {
   return (
     <div className="App">
-     <h1>Hello Team</h1>
+     <LobbyContainer />
     </div>
   );
 }
