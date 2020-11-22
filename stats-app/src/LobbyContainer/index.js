@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import { Form, Button, Label, Segment } from 'semantic-ui-react'
-import Login from '../Login'
-import EditLobbyModal from '../EditLobbyModal'
-import NewLobbyForm from '../NewLobbyForm'
-import LobbyList from '../LobbyList'
-import Lobby from '../Lobby'
-import Register from '../Register'
+// import { Form, Button, Label, Segment } from 'semantic-ui-react'
+// import Login from '../Login'
+// import EditLobbyModal from '../EditLobbyModal'
+// import NewLobbyForm from '../NewLobbyForm'
+// import LobbyList from '../LobbyList'
+// import Lobby from '../Lobby'
 
 export default class LobbyContainer extends Component {
 
