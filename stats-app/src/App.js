@@ -4,7 +4,7 @@ export default class App extends Component {
 
     this.state = {
       loggedIn: false,
-      loggedInUserEmail: '' // might be helpful to track something to display
+      loggedInUsername: '' // might be helpful to track something to display
                            // "logged in as..."
     }
   }
@@ -41,7 +41,7 @@ register = async (registerInfo) => {
      if(registerResponse.status === 201) {
        this.setState({
          loggedIn: true,
-         loggedInUserEmail: registerJson.data.email
+         loggedInUsername: registerJson.data.username
        })
      }
   } catch(err) {
@@ -70,7 +70,7 @@ login = async (loginInfo) => {
     if(loginResponse.status === 200) {
         this.setState({
           loggedIn: true,
-          loggedInUserEmail: loginJson.data.email
+          loggedInUsername: loginJson.data.username
         })
       }
   } catch(error) {
@@ -93,7 +93,7 @@ logout = async () => {
     if(logoutResponse.status === 200) {
       this.setState({
         loggedIn: false,
-        loggedInUserEmail: ''
+        loggedInUsername: ''
       })
 
     }
@@ -111,14 +111,17 @@ logout = async () => {
           this.state.loggedIn
           ?
           <React.Fragment>
-            <Header email={this.state.loggedInUserEmail} logout={this.logout} />
-            <DogContainer />
+            {/* <Header email={this.state.loggedInUserEmail} logout={this.logout} /> */}
+            <LobbyContainer />
           </React.Fragment>
           :
+          <React.Fragment>
           <LoginRegisterForm
             login={this.login}
             register={this.register}
           />
+          <LobbyContainer />
+          </React.Fragment>
         }
       </div>
     );
