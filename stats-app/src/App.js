@@ -1,3 +1,8 @@
+import React, { Component } from 'react';
+import './App.css';
+// import LobbyContainer from './LobbyContainer';
+import LoginRegisterForm from './LoginRegisterForm'
+
 export default class App extends Component {
   constructor() {
     super()
@@ -112,7 +117,7 @@ logout = async () => {
           ?
           <React.Fragment>
             {/* <Header email={this.state.loggedInUserEmail} logout={this.logout} /> */}
-            <LobbyContainer />
+            {/* <LobbyContainer /> */}
           </React.Fragment>
           :
           <React.Fragment>
@@ -120,7 +125,7 @@ logout = async () => {
             login={this.login}
             register={this.register}
           />
-          <LobbyContainer />
+          {/* <LobbyContainer /> */}
           </React.Fragment>
         }
       </div>
