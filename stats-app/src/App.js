@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 // import LobbyContainer from './LobbyContainer';
-import LoginRegisterForm from './LoginRegisterForm'
+import NewLobbyForm from './NewLobbyForm';
+import LoginRegisterForm from './LoginRegisterForm';
+
 
 export default class App extends Component {
   constructor() {
@@ -125,7 +127,8 @@ logout = async () => {
             login={this.login}
             register={this.register}
           />
-          {/* <LobbyContainer /> */}
+        
+          <NewLobbyForm />
           </React.Fragment>
         }
       </div>
