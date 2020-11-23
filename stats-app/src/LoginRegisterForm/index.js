@@ -44,11 +44,11 @@ handleSubmit = (event) => {
       <React.Fragment>
         <h2>{this.state.action} here</h2>
         <Form onSubmit={this.handleSubmit}>
-        {
+        
          // only show username field if they are registering
          // because our login process just uses email
-         this.state.action === "Register"
-         &&
+      
+        
          <React.Fragment>
            <Label>Username:</Label>
            <Form.Input
@@ -59,7 +59,6 @@ handleSubmit = (event) => {
              onChange={this.handleChange}
            />
          </React.Fragment>
-        }
           <Label>Password:</Label>
           <Form.Input
             type="password"

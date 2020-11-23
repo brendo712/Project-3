@@ -59,7 +59,7 @@ register = async (registerInfo) => {
 
 login = async (loginInfo) => {
   console.log("login() in App.js called with the following info", loginInfo);
-  const url = process.env.REACT_APP_API_URL + 'users/login'
+  const url = process.env.REACT_APP_API_URL + '/sessions/'
 
   try {
     const loginResponse = await fetch(url, {
@@ -86,12 +86,16 @@ login = async (loginInfo) => {
   }
 }
 
-logout = async () => {
+logout = async (logout) => {
   try {
-    const url = process.env.REACT_APP_API_URL + "/sessions/logout"
+    const url = process.env.REACT_APP_API_URL + "/sessions/"
 
     const logoutResponse = await fetch(url, {
-      credentials: 'include'
+      method: 'DELETE',
+      body: JSON.stringify(logout),
+      headers: {
+        'Content-Type': 'application/json'
+      }
     })
     console.log("logoutResponse", logoutResponse);
     const logoutJson = await logoutResponse.json()
