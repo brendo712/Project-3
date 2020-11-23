@@ -27,7 +27,7 @@ import { Form, Button, Label } from 'semantic-ui-react'
       }
   
       createUser = async () => {
-        const API_KEY = process.env.API_KEY
+        const codkey = process.env.REACT_APP_API_KEY
         
         try {
           
@@ -35,7 +35,7 @@ import { Form, Button, Label } from 'semantic-ui-react'
             method: "GET",
             headers: {
                 
-                "x-rapidapi-key": API_KEY,
+                "x-rapidapi-key": codkey,
                 "x-rapidapi-host": "call-of-duty-modern-warfare.p.rapidapi.com"
                 
               }
