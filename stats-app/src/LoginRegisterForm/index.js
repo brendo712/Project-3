@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Button, Label } from 'semantic-ui-react'
+import { Form, Button, Label, Input } from 'semantic-ui-react'
 import '../index.css'
 
 export default class LoginRegisterForm extends Component {
@@ -39,46 +39,58 @@ handleSubmit = (event) => {
     }
  }
 
-  render() {
-    return (
-      <React.Fragment>
-        <h2>{this.state.action} here</h2>
-        <Form onSubmit={this.handleSubmit}>
-
-           <Label>Username:</Label>
-           <Form.Input
-             type="text"
-             name="username"
-             placeholder="Enter a username"
-             value={this.state.username}
-             onChange={this.handleChange}
-           />
-
-          <Label>Password:</Label>
-          <Form.Input
-            type="password"
-            name="password"
-            placeholder="Enter a password"
-            value={this.state.password}
-            onChange={this.handleChange}
-          />
-          <Button type="Submit">
-            { this.state.action === "Login" ? "Log in" : "Sign up"}
-          </Button>
-        </Form>
-        {
-          this.state.action === "Login"
-          ?
-          <p>
-            Need an account? Sign up <span className="fake-link" onClick={this.switchForm}>here</span>.
-          </p>
-          :
-          <p>
-            Already have an account? Log in <span className="fake-link" onClick={this.switchForm}>here</span>.
-          </p>
-
-        }
-      </React.Fragment>
-    )
-  }
+ render() {
+  return (
+  
+    <React.Fragment>
+     
+       <div class='login'> 
+      
+      <Form onSubmit={this.handleSubmit}>
+    
+      
+        <Form.Group inline>
+         <Label>Username:</Label>
+         <Input size='mini'
+           type="text"
+           name="username"
+           placeholder="Enter a username"
+           value={this.state.username}
+           onChange={this.handleChange}
+         />
+     
+        <Label>Password:</Label>
+        <Input size='mini'
+          type="password"
+          name="password"
+          placeholder="Enter a password"
+          value={this.state.password}
+          onChange={this.handleChange}
+        />
+        
+        <Button secondary
+        size='mini'
+        type="Submit">
+          { this.state.action === "Login" ? "Login" : "Sign up"}
+        </Button></Form.Group> 
+      </Form></div>
+      {
+        
+        this.state.action === "Login"
+        ?
+        <div style={{ padding: 5}}>
+        <p align='left'>
+          Need an account? Sign up <span className="fake-link" onClick={this.switchForm}>here</span>.
+        </p>
+        </div>
+        :
+        <div style={{ padding: 5}}>
+        <p align='left'>
+          Already have an account? Log in <span className="fake-link" onClick={this.switchForm}>here</span>.
+        </p>
+        </div>
+      }
+    </React.Fragment>
+  )
+}
 }
