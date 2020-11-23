@@ -44,6 +44,7 @@ handleSubmit = (event) => {
       <React.Fragment>
         <h2>{this.state.action} here</h2>
         <Form onSubmit={this.handleSubmit}>
+
            <Label>Username:</Label>
            <Form.Input
              type="text"
@@ -52,6 +53,7 @@ handleSubmit = (event) => {
              value={this.state.username}
              onChange={this.handleChange}
            />
+
           <Label>Password:</Label>
           <Form.Input
             type="password"
