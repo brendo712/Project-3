@@ -7,32 +7,35 @@ import { Form, Button, Label, Segment } from 'semantic-ui-react'
 
         constructor(props) {
           super(props)
-      
+
           this.state = {
-            name: '',
-            
+            name: 'Brendan',
+            // owner:user.username,
+            size: 0,
+            players: [],
+            prize: 0
           }
         }
 
-  
+
     handleChange = (event) => {
       this.setState({
         [event.target.name]: event.target.value
       })
-  
+
     }
-    
+
     handleSubmit = (event) => {
       event.preventDefault()
-  
+
       this.props.createLobby(this.state)
-  
+
       this.setState({
         name: '',
       })
     }
 
-    
+
   // fun tip: fragments! grouping elements without divs
   // https://reactjs.org/docs/fragments.html
     render() {
@@ -49,10 +52,25 @@ import { Form, Button, Label, Segment } from 'semantic-ui-react'
             placeholder="Enter a name"
             onChange={this.handleChange}
           />
+          <Label>Tournament Size:</Label>
+          <Form.Input
+            type="text"
+            name="size"
+            value={this.state.size}
+            placeholder="How many players?"
+            onChange={this.handleChange}
+          />
+          <Label>Tournament Prize:</Label>
+          <Form.Input
+            type="text"
+            name="prize"
+            value={this.state.prize}
+            placeholder="Total Winnings"
+            onChange={this.handleChange}
+          />
           <Button type="Submit">Create Lobby</Button>
         </Form>
       </Segment>
       )
     }
   }
-  
