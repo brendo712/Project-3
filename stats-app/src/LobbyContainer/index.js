@@ -4,7 +4,7 @@ import { Form, Button, Label, Segment } from 'semantic-ui-react'
 // import EditLobbyModal from '../EditLobbyModal'
 import NewLobbyForm from '../NewLobbyForm'
 import LobbyList from '../LobbyList'
-// import Lobby from '../Lobby'
+import AddPlayerModal from '../AddPlayerModal'
 
 // console.log(process.env.NODE_ENV)
 // let baseUrl = ''
@@ -24,7 +24,10 @@ export default class LobbyContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      
       lobbies: [],
+      idOfLobbyToEdit: -1
+
     }
   }
   componentDidMount() {
@@ -79,7 +82,44 @@ export default class LobbyContainer extends Component {
 
 
   
+  addPlayers = (idOfLobbyToEdit) => {
+    console.log("You are trying to add a player to lobby with id: ", idOfLobbyToEdit)
+    this.setState({
+      idOfLobbyToEdit: idOfLobbyToEdit
+    })
+  }
 
+  updatePlayer = async (updateLobbyInfo) => {
+    try {
+      const url = process.env.REACT_APP_API_URL + "/lobbies/" + this.state.idOfLobbyToEdit
+      const updatePlayerResponse = await fetch(url, {
+        method: 'PUT',
+        body: JSON.stringify(updateLobbyInfo),
+        headers: {
+          'Content-Type': 'application.json'
+        }
+      })
+      console.log("updatePlayerResponse", updatePlayerResponse)
+      const updatePlayerJson = await updatePlayerResponse.json()
+      console.log("updatePlayerJson", updatePlayerJson)
+      if(updatePlayerResponse.status === 200) {
+        const lobbies = this.state.lobbies
+        const indexOfLobbyBeingUpdated = lobbies.findIndex(lobby => lobby._id === this.state.idOfLobbyToEdit)
+        lobbies[indexOfLobbyBeingUpdated] = updateLobbyJson.data
+        this.setState({
+          lobbies: lobbies,
+          idOfLobbyToEdit: -1
+        })
+      }
+    } catch(err) {
+      console.log("Error adding player: ", err)
+    }
+  }
+  closeModal = () => {
+    this.setState({
+      idOfLobbyToEdit: -1
+    })
+  }
 // deleteLobby will go here. We will want to make it so that the creator is only able to delete
 // createLobby
 // editLobby
@@ -92,8 +132,19 @@ export default class LobbyContainer extends Component {
         <NewLobbyForm createLobby={this.createLobby} />
         <h2>Tournaments</h2>
         <LobbyList
-        lobbies={this.state.lobbies}/>
+        lobbies={this.state.lobbies}
+        addPlayers={this.addPlayers}
+        />
+        {
+          this.state.idOfLobbyToEdit !== -1 
+          &&
+        <AddPlayerModal
+        key={this.state.idOfLobbyToEdit}
+        updatePlayer={this.updatePlayer}
+        closeModal={this.closeModal}
+        />
 
+        }
       </React.Fragment>
     )
   }

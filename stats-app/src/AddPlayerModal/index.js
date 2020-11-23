@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
-import { Form, Button, Label, Dropdown } from 'semantic-ui-react'
+import { Form, Button, Label, Dropdown, Modal } from 'semantic-ui-react'
 import '../index.css'
 
-export default class LoginRegisterForm extends Component {
+export default class AddPlayerModal extends Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     this.state = {
-      gamertag: '',
-      platform: '',
-      kpm: ''
+      gamertag: props.playerToAdd.gamertag,
+      platform: props.playerToAdd.platform,
+      kpm: props.playerToAdd.kpm
     }
   }
 
@@ -27,7 +27,7 @@ handleMount = async (event) => {
     
     try {
       
-      const response = await fetch(`https://call-of-duty-modern-warfare.p.rapidapi.com/multiplayer/${this.state.gamertag}/${thiis.state.platform}`, {
+      const response = await fetch(`https://call-of-duty-modern-warfare.p.rapidapi.com/multiplayer/${this.state.gamertag}/${this.state.platform}`, {
         method: "GET",
         headers: {
             
@@ -58,47 +58,43 @@ handleSubmit = (event) => {
    event.preventDefault()
    console.log(`You are trying to  with the following credentials`)
    console.log(this.state);
+   this.props.updateLobby(this.state)
  }
 
   render() {
     return (
-      <React.Fragment>
+    
+      <Modal open={true} closeIcon={true} onClose={this.props.closeModal}>
+     
+      <Modal.Content> 
         <Form onSubmit={this.handleSubmit}>
-        
-         // only show username field if they are registering
-         // because our login process just uses email
       
-        
-         <React.Fragment>
-           <Label>Gamertag:</Label>
            <Form.Input
              type="text"
              name="gamertag"
              placeholder="Player Gamertag"
              value={this.state.gamertag}
              onChange={event => this.setState({gamertag: event.target.value})}
-           />
-          </React.Fragment>
-          <Label>Platform:</Label>
-          <Form.Input>
+          />
           
-            <Dropdown text='Platform'>
+          <Label>Platform:</Label>
+          
+          
+            <Dropdown text='Platform' value={this.state.platform} onChange={event => this.setState({plateform: event.target.value})}>
                 <Dropdown.Menu>
-                <Dropdown.Item text="psn">Volvo </Dropdown.Item>
-                <Dropdown.Item text="battle">Saab </Dropdown.Item>
-                <Dropdown.Item text="xbl">Fiat </Dropdown.Item>
-                <Dropdown.Item text="steam">Audi </Dropdown.Item>
+                <Dropdown.Item text="psn">Playstation Network </Dropdown.Item>
+                <Dropdown.Item text="battle">BattleNet </Dropdown.Item>
+                <Dropdown.Item text="xbl">Xbox</Dropdown.Item>
+                <Dropdown.Item text="steam">Steam</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
-
-            value={this.state.platform}
-            onChange={event => this.setState({plateform: event.target.value})}
-        </Form.Input>
-          <Button type="Submit">
-            
-          </Button>
-        </Form>
-      </React.Fragment>
+         
+          <Modal.Actions>
+           <Button type="Submit">Add Players</Button> 
+          </Modal.Actions>
+          </Form>
+     </Modal.Content>
+     </Modal>
     )
   }
 }
