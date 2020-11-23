@@ -1,19 +1,19 @@
 import React, { Component } from 'react'
-// import { Form, Button, Label, Segment } from 'semantic-ui-react'
-// import Login from '../Login'
+import { Form, Button, Label, Segment } from 'semantic-ui-react'
+
 // import EditLobbyModal from '../EditLobbyModal'
 // import NewLobbyForm from '../NewLobbyForm'
-// import LobbyList from '../LobbyList'
+import LobbyList from '../LobbyList'
 // import Lobby from '../Lobby'
 
 // console.log(process.env.NODE_ENV)
-let baseUrl = ''
+// let baseUrl = ''
 
-if (process.env.NODE_ENV === 'development') {
-  baseUrl = 'http://localhost:3003'
-} else {
-  baseUrl = 'heroku url here'
-}
+// if (process.env.NODE_ENV === 'development') {
+//   baseUrl = 'http://localhost:3003'
+// } else {
+//   baseUrl = 'heroku url here'
+// }
 
 // console.log('current base URL:', baseUrl)
 
@@ -50,6 +50,8 @@ export default class LobbyContainer extends Component {
     }
   }
 
+  
+
 // deleteLobby will go here. We will want to make it so that the creator is only able to delete
 // createLobby
 // editLobby
@@ -60,7 +62,8 @@ export default class LobbyContainer extends Component {
     return (
       <React.Fragment>
         <h2>Tournaments</h2>
-        <NewLobbyForm />
+        <LobbyList
+        lobbies = {this.state.lobbies}/>
 
       </React.Fragment>
     )
