@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Form, Button, Label, Segment } from 'semantic-ui-react'
 
 // import EditLobbyModal from '../EditLobbyModal'
-// import NewLobbyForm from '../NewLobbyForm'
+import NewLobbyForm from '../NewLobbyForm'
 import LobbyList from '../LobbyList'
 // import Lobby from '../Lobby'
 
@@ -41,7 +41,7 @@ export default class LobbyContainer extends Component {
       const lobbiesJson = await lobbiesResponse.json()
 
       this.setState({
-        lobbies:lobbiesJson.data
+        lobbies: lobbiesJson
 
       })
 
@@ -49,6 +49,34 @@ export default class LobbyContainer extends Component {
       console.log("Error getting lobby data.", err)
     }
   }
+
+  createLobby = async (lobby) => {
+    // console.log("here is the dog you want to add")
+    // console.log(dogToAdd)
+    try {
+      const url = process.env.REACT_APP_API_URL + "/lobbies/"
+      const createLobbyResponse = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(lobby)
+      })
+      const lobbyJson = await createLobbyResponse.json()
+      console.log(lobbyJson)
+
+      if(createLobbyResponse.status === 201 || createLobbyResponse.status === 200){
+        this.setState({
+          lobbies: [...this.state.lobbies, lobbyJson]
+        })
+      }
+
+
+    } catch(err) {
+      console.log("Error adding dog", err)
+    }
+  }
+
 
   
 
@@ -61,9 +89,10 @@ export default class LobbyContainer extends Component {
   render() {
     return (
       <React.Fragment>
+        <NewLobbyForm createLobby={this.createLobby} />
         <h2>Tournaments</h2>
         <LobbyList
-        lobbies = {this.state.lobbies}/>
+        lobbies={this.state.lobbies}/>
 
       </React.Fragment>
     )
