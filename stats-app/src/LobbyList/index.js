@@ -11,8 +11,8 @@ export default function LobbyList(props) {
         <List.Item>
           <List.Content>
             <List.Header>{lobby.name} hosted by {lobby.owner} (Win: ${lobby.prize})</List.Header>
-
-            <Button primary onClick={ () => props.addPlayers(lobby.id)}>Add Players</Button>
+            <Button primary onClick={ () => props.editLobby(lobby._id)}>Edit Lobby</Button>
+            <Button primary onClick={ () => props.addPlayers(lobby._id)}>Add Players</Button>
 
           </List.Content>
         </List.Item>

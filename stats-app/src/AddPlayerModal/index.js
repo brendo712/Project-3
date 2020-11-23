@@ -24,29 +24,29 @@ handleChange = (event) => {
 handleMount = async (event) => {
     event.preventDefault()
     const codkey = process.env.REACT_APP_API_KEY
-    
+
     try {
-      
+
       const response = await fetch(`https://call-of-duty-modern-warfare.p.rapidapi.com/multiplayer/${this.state.gamertag}/${this.state.platform}`, {
         method: "GET",
         headers: {
-            
+
             "x-rapidapi-key": codkey,
             "x-rapidapi-host": "call-of-duty-modern-warfare.p.rapidapi.com"
-            
-          }
-         
 
-          
+          }
+
+
+
       })
-      
+
         const data = await response.json()
         console.log(data)
-        
+
         this.setState({
           kpm: data.data
         })
-    
+
       }
       catch(err) {
         console.log('Error in componentDidMount:')
@@ -63,12 +63,12 @@ handleSubmit = (event) => {
 
   render() {
     return (
-    
+
       <Modal open={true} closeIcon={true} onClose={this.props.closeModal}>
-     
-      <Modal.Content> 
+
+      <Modal.Content>
         <Form onSubmit={this.handleSubmit}>
-      
+
            <Form.Input
              type="text"
              name="gamertag"
@@ -76,10 +76,10 @@ handleSubmit = (event) => {
              value={this.state.gamertag}
              onChange={event => this.setState({gamertag: event.target.value})}
           />
-          
+
           <Label>Platform:</Label>
-          
-          
+
+
             <Dropdown text='Platform' value={this.state.platform} onChange={event => this.setState({plateform: event.target.value})}>
                 <Dropdown.Menu>
                 <Dropdown.Item text="psn">Playstation Network </Dropdown.Item>
@@ -88,9 +88,9 @@ handleSubmit = (event) => {
                 <Dropdown.Item text="steam">Steam</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
-         
+
           <Modal.Actions>
-           <Button type="Submit">Add Players</Button> 
+           <Button type="Submit">Add Players</Button>
           </Modal.Actions>
           </Form>
      </Modal.Content>

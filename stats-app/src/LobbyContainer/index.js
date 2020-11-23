@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Button, Label, Segment } from 'semantic-ui-react'
 
-// import EditLobbyModal from '../EditLobbyModal'
+import EditLobbyModal from '../EditLobbyModal'
 import NewLobbyForm from '../NewLobbyForm'
 import LobbyList from '../LobbyList'
 import AddPlayerModal from '../AddPlayerModal'
@@ -24,9 +24,10 @@ export default class LobbyContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      
+
       lobbies: [],
-      idOfLobbyToEdit: -1
+      idOfLobbyToEdit: -1,
+      idOfLobbyToEditForPlayer: -1,
 
     }
   }
@@ -80,18 +81,62 @@ export default class LobbyContainer extends Component {
     }
   }
 
-
-  
-  addPlayers = (idOfLobbyToEdit) => {
-    console.log("You are trying to add a player to lobby with id: ", idOfLobbyToEdit)
+  editLobby = (idOfLobbyToEdit) => {
+    console.log("you are trying to edit Lobby with id: ", idOfLobbyToEdit)
     this.setState({
       idOfLobbyToEdit: idOfLobbyToEdit
     })
   }
 
-  updatePlayer = async (updateLobbyInfo) => {
+  updateLobby = async (updatedLobbyInfo) => {
     try {
       const url = process.env.REACT_APP_API_URL + "/lobbies/" + this.state.idOfLobbyToEdit
+
+      const updateLobbyResponse = await fetch(url, {
+        credentials: 'include',
+        method: 'PUT',
+        body: JSON.stringify(updatedLobbyInfo),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+
+      console.log("updateLobbyResponse", updateLobbyResponse)
+      const updateLobbyJson = await updateLobbyResponse.json()
+      console.log("updateLobbyJson", updateLobbyJson)
+
+      if(updateLobbyResponse.status === 200) {
+        const lobbies = this.state.lobbies
+        const indexOfLobbyBeingUpdated = lobbies.findIndex(lobby => lobby._id === this.state.idOfLobbyToEdit)
+        lobbies[indexOfLobbyBeingUpdated] = updateLobbyJson.data
+        this.setState({
+          lobbies: lobbies,
+          idOfLobbyToEdit: -1 // close the modal
+        })
+      }
+
+    } catch(err) {
+      console.log("Error updating dog info: ", err)
+    }
+  }
+  closeLobbyModal = () => {
+    this.setState({
+      idOfLobbyToEdit: -1
+    })
+  }
+
+  addPlayers = (idOfLobbyToEditForPlayer) => {
+    console.log("You are trying to add a player to lobby with id: ", idOfLobbyToEditForPlayer)
+    this.setState({
+      idOfLobbyToEditForPlayer: idOfLobbyToEditForPlayer
+    })
+  }
+
+
+
+  updatePlayer = async (updateLobbyInfo) => {
+    try {
+      const url = process.env.REACT_APP_API_URL + "/lobbies/" + this.state.idOfLobbyToEditForPlayer
       const updatePlayerResponse = await fetch(url, {
         method: 'PUT',
         body: JSON.stringify(updateLobbyInfo),
@@ -104,20 +149,20 @@ export default class LobbyContainer extends Component {
       console.log("updatePlayerJson", updatePlayerJson)
       if(updatePlayerResponse.status === 200) {
         const lobbies = this.state.lobbies
-        const indexOfLobbyBeingUpdated = lobbies.findIndex(lobby => lobby._id === this.state.idOfLobbyToEdit)
-        lobbies[indexOfLobbyBeingUpdated] = updateLobbyJson.data
+        const indexOfLobbyBeingUpdated = lobbies.findIndex(lobby => lobby._id === this.state.idOfLobbyToEditForPlayer)
+        lobbies[indexOfLobbyBeingUpdated] = updatePlayerJson.data
         this.setState({
           lobbies: lobbies,
-          idOfLobbyToEdit: -1
+          idOfLobbyToEditForPlayer: -1
         })
       }
     } catch(err) {
       console.log("Error adding player: ", err)
     }
   }
-  closeModal = () => {
+  closePlayerModal = () => {
     this.setState({
-      idOfLobbyToEdit: -1
+      idOfLobbyToEditForPlayer: -1
     })
   }
 // deleteLobby will go here. We will want to make it so that the creator is only able to delete
@@ -133,17 +178,28 @@ export default class LobbyContainer extends Component {
         <h2>Tournaments</h2>
         <LobbyList
         lobbies={this.state.lobbies}
+        editLobby={this.editLobby}
         addPlayers={this.addPlayers}
         />
         {
-          this.state.idOfLobbyToEdit !== -1 
+          this.state.idOfLobbyToEdit !== -1
           &&
-        <AddPlayerModal
-        key={this.state.idOfLobbyToEdit}
-        updatePlayer={this.updatePlayer}
-        closeModal={this.closeModal}
-        />
-
+            <EditLobbyModal
+            key={this.state.idOfLobbyToEdit}
+            lobbyToEdit={this.state.lobbies.find((lobby) => lobby._id === this.state.idOfLobbyToEdit)}
+            updateLobby={this.updateLobby}
+            closeLobbyModal={this.closeLobbyModal}
+            />
+        }
+        {
+          this.state.idOfLobbyToEditForPlayer !== -1
+          &&
+            <AddPlayerModal
+            key={this.state.idOfLobbyToEditForPlayer}
+            playerToAdd={this.state.lobbies.find((lobby) => lobby._id === this.state.idOfLobbyToEditForPlayer)}
+            updatePlayer={this.updatePlayer}
+            closePlayerModal={this.closePlayerModal}
+            />
         }
       </React.Fragment>
     )
