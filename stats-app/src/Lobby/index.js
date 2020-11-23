@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Card } from 'semantic-ui-react'
+import NewPlayerForm from '../NewPlayerForm'
 
 export default function Lobby(props) {
   const teams = props.lobbies.map(lobby => {
@@ -28,9 +29,11 @@ export default function Lobby(props) {
     <React.Fragment>
       <h1>{lobby.name}</h1>
       <h2>{lobby.description}</h2>
+      <NewPlayerForm />
       <Card.Group centered={true}>
         {teams}
       </Card.Group>
+
     </React.Fragment>
   )
 }
