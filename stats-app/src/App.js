@@ -119,7 +119,7 @@ logout = async () => {
           ?
           <React.Fragment>
             {/* <Header email={this.state.loggedInUserEmail} logout={this.logout} /> */}
-          <NewLobbyForm />
+      
           <LobbyContainer />
           </React.Fragment>
           :
@@ -130,7 +130,7 @@ logout = async () => {
           />
           
           {/*   new lobby form goes above once lobbies are functional */}
-          <NewLobbyForm />
+     
           <LobbyContainer/>
           </React.Fragment>
         }

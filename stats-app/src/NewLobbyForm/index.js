@@ -21,7 +21,16 @@ import { Form, Button, Label, Segment } from 'semantic-ui-react'
       })
   
     }
-        
+    
+    handleSubmit = (event) => {
+      event.preventDefault()
+  
+      this.props.createLobby(this.state)
+  
+      this.setState({
+        name: '',
+      })
+    }
 
     
   // fun tip: fragments! grouping elements without divs
