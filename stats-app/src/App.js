@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-// import LobbyContainer from './LobbyContainer';
+import LobbyContainer from './LobbyContainer';
 import NewLobbyForm from './NewLobbyForm';
 import LoginRegisterForm from './LoginRegisterForm';
 
@@ -19,7 +19,7 @@ export default class App extends Component {
 
 register = async (registerInfo) => {
   console.log("register() in App.js called with the following info", registerInfo);
-  const url = process.env.REACT_APP_API_URL + "/sessions/register"
+  const url = process.env.REACT_APP_API_URL + "/users/"
 
   try {
     const registerResponse = await fetch(url, {
@@ -59,7 +59,7 @@ register = async (registerInfo) => {
 
 login = async (loginInfo) => {
   console.log("login() in App.js called with the following info", loginInfo);
-  const url = process.env.REACT_APP_API_URL + '/sessions/login'
+  const url = process.env.REACT_APP_API_URL + 'users/login'
 
   try {
     const loginResponse = await fetch(url, {
@@ -119,7 +119,8 @@ logout = async () => {
           ?
           <React.Fragment>
             {/* <Header email={this.state.loggedInUserEmail} logout={this.logout} /> */}
-            {/* <LobbyContainer /> */}
+          <NewLobbyForm />
+          <LobbyContainer />
           </React.Fragment>
           :
           <React.Fragment>
@@ -127,8 +128,10 @@ logout = async () => {
             login={this.login}
             register={this.register}
           />
-        
+          
+          {/*   new lobby form goes above once lobbies are functional */}
           <NewLobbyForm />
+          <LobbyContainer/>
           </React.Fragment>
         }
       </div>

@@ -8,7 +8,6 @@ export default class LoginRegisterForm extends Component {
     super()
 
     this.state = {
-      email: '',
       password: '',
       username: '',
       action: 'Login' // this will track whether we are logging in or registering
@@ -61,14 +60,6 @@ handleSubmit = (event) => {
            />
          </React.Fragment>
         }
-          <Label>Email:</Label>
-          <Form.Input
-            type="email"
-            name="email"
-            placeholder="Enter a email"
-            value={this.state.email}
-            onChange={this.handleChange}
-          />
           <Label>Password:</Label>
           <Form.Input
             type="password"
