@@ -50,7 +50,9 @@ register = async (registerInfo) => {
      if(registerResponse.status === 201) {
        this.setState({
          loggedIn: true,
+
          loggedInUsername: registerJson.username
+
        })
      }
   } catch(err) {
@@ -79,7 +81,10 @@ login = async (loginInfo) => {
     if(loginResponse.status === 200) {
         this.setState({
           loggedIn: true,
+
           loggedInUsername: loginJson.username
+
+
         })
       }
   } catch(error) {
@@ -124,6 +129,7 @@ logout = async (logout) => {
           this.state.loggedIn
           ?
           <React.Fragment>
+
           {/* <Button style={{align: 'right'}} onClick={this.logout}>Logout</Button> */}
           <LobbyContainer username={this.state.loggedInUsername}/>
           </React.Fragment>
@@ -133,9 +139,9 @@ logout = async (logout) => {
             login={this.login}
             register={this.register}
           />
-          
+
           {/*   new lobby form goes above once lobbies are functional */}
-        
+
           <LobbyContainer/>
           </React.Fragment>
         }
@@ -143,4 +149,3 @@ logout = async (logout) => {
     );
   }
 }
-
