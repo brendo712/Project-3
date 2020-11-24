@@ -1,70 +1,31 @@
-# Getting Started with Create React App
+# Project 3 - Call of Duty Tournament Helper
+By: Brendan Sutherland, Jacob Cutshall, Beau Seigfreid
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a group project we created with a MERN stack. MongoDB and express on the backend with React.js on the frontend. 
 
-## Available Scripts
+This is the frontend of the project. 
 
-In the project directory, you can run:
+## Purpose
 
-### `npm start`
+The purpose of this app was to make an easy way of displaying tournaments so that you can see each player and see their skill level. Then with that data, you can create fair pairings of players based on skill level in the tournament. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Using The App
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The app will be available for full deployment on heroku soon. The app allows you to create tournament IDs and list them. You can also create a user and have your tournaments bound to a user ID. Future deployments would allow for allow adding players to tournaments by pairing with rapid APIs Call of Duty API. The app already pulls data from the API but doesn't allow for population of the lobby. 
 
-### `npm test`
+## Ease of Use
+Each User will be able to register and then create a tournament upon registration. The tournament will hold their unique user ID as the owner. You can sign up by clicking sign up or alternatively you can login. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Technologies
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The game is made mostly with JavaScript and React.js. The backend is on MongoDB and controlled by express.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Unsolved Problems
 
-### `npm run eject`
+Currently the app allows for you to add tournaments, edit tournaments, and delete tournaments but doesn't allow you to populate players despite the call to the API. 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Forthcoming Features
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The code is written in a way where non-users can make tournaments. That isn't analogous to the point of the app. We would also like to make it so players populate that way you can see the players in each lobby. 
