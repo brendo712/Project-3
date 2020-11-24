@@ -9,7 +9,7 @@ import { Form, Button, Label, Segment } from 'semantic-ui-react'
           super(props)
 
           this.state = {
-            name: 'Brendan',
+            name: '',
             // owner:user.username,
             size: 0,
             players: [],
