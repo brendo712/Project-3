@@ -44,7 +44,7 @@ handleSubmit = (event) => {
   
     <React.Fragment>
      
-       <div class='login'> 
+       <div className='login'> 
       
       <Form onSubmit={this.handleSubmit}>
     
