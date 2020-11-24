@@ -42,12 +42,15 @@ handleMount = async (event) => {
 
         const data = await response.json()
 
+        
         const scorePerMinute = data.lifetime.all.properties.scorePerMinute
         console.log(scorePerMinute)
         this.setState({
-
+          
           kpm: scorePerMinute
+          
         })
+        
 
       }
       catch(err) {

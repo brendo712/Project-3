@@ -31,6 +31,7 @@ export default class LobbyContainer extends Component {
 
     }
   }
+  
   componentDidMount() {
     console.log("componentDidMount() in LobbyContainer is running")
     // This will get the lobbys when the component is rendered
@@ -188,6 +189,8 @@ export default class LobbyContainer extends Component {
       console.log("Error adding player: ", err)
     }
   }
+
+
   closePlayerModal = () => {
     this.setState({
       idOfLobbyToEditForPlayer: -1
@@ -210,6 +213,7 @@ export default class LobbyContainer extends Component {
         addPlayers={this.addPlayers}
         deleteLobby={this.deleteLobby}
         />
+
         {
           this.state.idOfLobbyToEdit !== -1
           &&
