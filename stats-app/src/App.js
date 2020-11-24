@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
+import { Button } from 'semantic-ui-react'
 import LobbyContainer from './LobbyContainer';
 import NewLobbyForm from './NewLobbyForm';
+import LobbyList from './LobbyList';
 import LoginRegisterForm from './LoginRegisterForm';
 
 
@@ -48,7 +50,9 @@ register = async (registerInfo) => {
      if(registerResponse.status === 201) {
        this.setState({
          loggedIn: true,
-         loggedInUsername: registerJson.username // ERROR HERE
+
+         loggedInUsername: registerJson.username
+
        })
      }
   } catch(err) {
@@ -77,7 +81,10 @@ login = async (loginInfo) => {
     if(loginResponse.status === 200) {
         this.setState({
           loggedIn: true,
-          loggedInUsername: loginJson.username // ERROR HERE
+
+          loggedInUsername: loginJson.username
+
+
         })
       }
   } catch(error) {
@@ -123,7 +130,8 @@ logout = async (logout) => {
           ?
           <React.Fragment>
 
-          <LobbyContainer />
+          {/* <Button style={{align: 'right'}} onClick={this.logout}>Logout</Button> */}
+          <LobbyContainer username={this.state.loggedInUsername}/>
           </React.Fragment>
           :
           <React.Fragment>

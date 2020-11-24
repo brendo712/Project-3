@@ -31,6 +31,8 @@ export default class LobbyContainer extends Component {
 
     }
   }
+
+  
   
   componentDidMount() {
     console.log("componentDidMount() in LobbyContainer is running")
@@ -71,6 +73,7 @@ export default class LobbyContainer extends Component {
         if(deleteLobbyResponse.status === 200) {
 
           this.getLobbies()
+
         }
       } catch(err) {
         console.log("Error deleting lobby: ", err)
@@ -202,13 +205,15 @@ export default class LobbyContainer extends Component {
   render() {
     return (
       <React.Fragment>
-        <NewLobbyForm createLobby={this.createLobby} />
+        <NewLobbyForm createLobby={this.createLobby} 
+        username={this.props.username}/>
         <h2>Tournaments</h2>
         <LobbyList
         lobbies={this.state.lobbies}
         editLobby={this.editLobby}
         addPlayers={this.addPlayers}
         deleteLobby={this.deleteLobby}
+        
         />
 
         {
