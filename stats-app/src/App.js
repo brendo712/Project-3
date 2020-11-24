@@ -48,7 +48,7 @@ register = async (registerInfo) => {
      if(registerResponse.status === 201) {
        this.setState({
          loggedIn: true,
-         loggedInUsername: registerJson.username
+         loggedInUsername: registerJson.username // ERROR HERE
        })
      }
   } catch(err) {
@@ -77,7 +77,7 @@ login = async (loginInfo) => {
     if(loginResponse.status === 200) {
         this.setState({
           loggedIn: true,
-          loggedInUsername: loginJson.username
+          loggedInUsername: loginJson.username // ERROR HERE
         })
       }
   } catch(error) {
