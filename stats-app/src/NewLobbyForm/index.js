@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import LobbyList from '../LobbyList';
-import { Form, Button, Label, Segment } from 'semantic-ui-react'
+import { Form, Button, Label, Segment, Image} from 'semantic-ui-react'
 
 
     export default class NewLobbyForm extends Component {
@@ -41,26 +41,31 @@ import { Form, Button, Label, Segment } from 'semantic-ui-react'
     render() {
       console.log("render() in NewLobbyForm is running")
       return (
-        <Segment>
+        <div className="formdiv">
         <h4> Add New Lobby:</h4>
-        <Form onSubmit={this.handleSubmit}>
-          <Label>Tournament Name:</Label>
+        
+        <Form inverted relaxed onSubmit={this.handleSubmit}>
+        <Form.Group inline widths='equal'>  <label><h5>Tournament Name:</h5></label>
           <Form.Input
+            size="mini"
             type="text"
             name="name"
             value={this.state.name}
             placeholder="Enter a name"
             onChange={this.handleChange}
           />
-          <Label>Tournament Size:</Label>
+          <label><h5>Tournament Size: </h5></label>
           <Form.Input
+            size="mini"
             type="text"
             name="size"
             value={this.state.size}
             placeholder="How many players?"
             onChange={this.handleChange}
           />
-          <Label>Tournament Prize:</Label>
+          </Form.Group>
+          
+          <label><h3>Tournament Prize:</h3></label>
           <Form.Input
             type="text"
             name="prize"
@@ -70,7 +75,7 @@ import { Form, Button, Label, Segment } from 'semantic-ui-react'
           />
           <Button type="Submit">Create Lobby</Button>
         </Form>
-      </Segment>
+     </div>
       )
     }
   }

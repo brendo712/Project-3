@@ -7,6 +7,9 @@
 
 body {
   margin: 0;
+  color:white;
+  background-image: url('https://i.imgur.com/mVvB87Q.png');
+  background-size: cover;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -22,6 +25,30 @@ code {
   padding-right: 50%;
   
 }
+
+.formdiv {
+  background: linear-gradient(90deg, rgba(77,25,77,1) 0%, rgba(33,47,69,1) 100%);
+  padding: 10px;
+  border: 3px solid rgba(77,25,77,1);
+  border-radius: 3px;
+}
+.tournicontainer {
+display: flex;
+}
+
+.tournament {
+ 
+  width: 45%;
+  margin: 2%;
+  
+}
+.tournament2 {
+  color: white;
+  width: 60%;
+  padding: 10
+}
+
+
 
 
 

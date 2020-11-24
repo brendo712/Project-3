@@ -7,9 +7,10 @@ export default function LobbyList(props) {
     // console.log(props)
   const lobbies = props.lobbies.map(lobby => {
     return(
-      <List key={lobby._id} selection verticalAlign='middle'>
+  
+      <List key={lobby._id} selection verticalAlign='middle' inverted>
         <List.Item>
-          <List.Content>
+          <List.Content inverted>
             <List.Header>{lobby.name} hosted by {lobby.owner} (Win: ${lobby.prize})</List.Header>
             <Button primary onClick={ () => props.editLobby(lobby._id)}>Edit</Button>
             <Button primary onClick={ () => props.addPlayers(lobby._id)}>Add Players</Button>
@@ -17,6 +18,7 @@ export default function LobbyList(props) {
           </List.Content>
         </List.Item>
       </List>
+    
     )
   })
   return(

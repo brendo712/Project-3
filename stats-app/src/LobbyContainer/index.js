@@ -205,17 +205,21 @@ export default class LobbyContainer extends Component {
   render() {
     return (
       <React.Fragment>
+  <div className="tournicontainer">
+    <div className="tournament">    
         <NewLobbyForm createLobby={this.createLobby} 
         username={this.props.username}/>
+    </div>
+    <div className="tournament2">  
         <h2>Tournaments</h2>
         <LobbyList
         lobbies={this.state.lobbies}
         editLobby={this.editLobby}
         addPlayers={this.addPlayers}
         deleteLobby={this.deleteLobby}
-        
         />
-
+    </div>
+  </div>
         {
           this.state.idOfLobbyToEdit !== -1
           &&
