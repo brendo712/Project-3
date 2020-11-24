@@ -65,7 +65,6 @@ export default class LobbyContainer extends Component {
         const url = process.env.REACT_APP_API_URL + "/lobbies/" + idOfLobbyToDelete
 
         const deleteLobbyResponse = await fetch(url, {
-          credentials: 'include',
           method: 'DELETE'
         })
         const deleteLobbyJson = await deleteLobbyResponse.json()
@@ -74,10 +73,7 @@ export default class LobbyContainer extends Component {
         if(deleteLobbyResponse.status === 200) {
 
           this.getLobbies()
-          // this.setState({
-          //   lobbies: this.state.lobbies.filter(lobby => lobby.id !== idOfLobbyToDelete)
-            
-          // })
+
         }
       } catch(err) {
         console.log("Error deleting lobby: ", err)
