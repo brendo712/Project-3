@@ -41,11 +41,15 @@ handleMount = async (event) => {
       })
 
         const data = await response.json()
-        console.log(data)
-
+        
+        const scorePerMinute = data.lifetime.all.properties.scorePerMinute
+        console.log(scorePerMinute)
         this.setState({
-          kpm: data.data
+          
+          kpm: scorePerMinute
+          
         })
+        
 
       }
       catch(err) {
@@ -64,7 +68,7 @@ handleSubmit = (event) => {
   render() {
     return (
 
-      <Modal open={true} closeIcon={true} onClose={this.props.closeModal}>
+      <Modal open={true} closeIcon={true} onClose={this.props.closePlayerModal}>
 
       <Modal.Content>
         <Form onSubmit={this.handleMount}>
