@@ -67,7 +67,7 @@ handleSubmit = (event) => {
       <Modal open={true} closeIcon={true} onClose={this.props.closeModal}>
 
       <Modal.Content>
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.handleMount}>
 
            <Form.Input
              type="text"
@@ -79,15 +79,12 @@ handleSubmit = (event) => {
 
           <Label>Platform:</Label>
 
-
-            <Dropdown text='Platform' value={this.state.platform} onChange={event => this.setState({plateform: event.target.value})}>
-                <Dropdown.Menu>
-                <Dropdown.Item text="psn">Playstation Network </Dropdown.Item>
-                <Dropdown.Item text="battle">BattleNet </Dropdown.Item>
-                <Dropdown.Item text="xbl">Xbox</Dropdown.Item>
-                <Dropdown.Item text="steam">Steam</Dropdown.Item>
-                </Dropdown.Menu>
-            </Dropdown>
+            <select text='Platform' value={this.state.platform} onChange={event => this.setState({platform: event.target.value})}>
+              <option value="psn">Playstation Network</option>
+              <option value="xbl">Xbox</option>
+              <option value="steam">Steam</option>
+              <option value="battle">Battlenet</option>
+            </select>
 
           <Modal.Actions>
            <Button type="Submit">Add Players</Button>
