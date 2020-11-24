@@ -27,7 +27,7 @@ export default class EditLobbyModal extends Component {
   render() {
 
     return(
-      <Modal open={true} closeIcon={true} onClose={this.props.closeModal}>
+      <Modal open={true} closeIcon={true} onClose={this.props.closeLobbyModal}>
         <Header>
           <h3>Enter new info</h3>
         </Header>

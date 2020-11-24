@@ -31,6 +31,7 @@ export default class LobbyContainer extends Component {
 
     }
   }
+  
   componentDidMount() {
     console.log("componentDidMount() in LobbyContainer is running")
     // This will get the lobbys when the component is rendered
@@ -108,7 +109,7 @@ export default class LobbyContainer extends Component {
       if(updateLobbyResponse.status === 200) {
         const lobbies = this.state.lobbies
         const indexOfLobbyBeingUpdated = lobbies.findIndex(lobby => lobby._id === this.state.idOfLobbyToEdit)
-        lobbies[indexOfLobbyBeingUpdated] = updateLobbyJson.data
+        lobbies[indexOfLobbyBeingUpdated] = updateLobbyJson
         this.setState({
           lobbies: lobbies,
           idOfLobbyToEdit: -1 // close the modal
@@ -150,7 +151,7 @@ export default class LobbyContainer extends Component {
       if(updatePlayerResponse.status === 200) {
         const lobbies = this.state.lobbies
         const indexOfLobbyBeingUpdated = lobbies.findIndex(lobby => lobby._id === this.state.idOfLobbyToEditForPlayer)
-        lobbies[indexOfLobbyBeingUpdated] = updatePlayerJson.data
+        lobbies[indexOfLobbyBeingUpdated] = updatePlayerJson
         this.setState({
           lobbies: lobbies,
           idOfLobbyToEditForPlayer: -1
@@ -160,6 +161,8 @@ export default class LobbyContainer extends Component {
       console.log("Error adding player: ", err)
     }
   }
+
+
   closePlayerModal = () => {
     this.setState({
       idOfLobbyToEditForPlayer: -1
@@ -181,6 +184,7 @@ export default class LobbyContainer extends Component {
         editLobby={this.editLobby}
         addPlayers={this.addPlayers}
         />
+
         {
           this.state.idOfLobbyToEdit !== -1
           &&
