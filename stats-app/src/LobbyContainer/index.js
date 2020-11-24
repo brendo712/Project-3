@@ -54,6 +54,32 @@ export default class LobbyContainer extends Component {
     }
   }
 
+  deleteLobby = async (idOfLobbyToDelete) => {
+      // console.log(idOfDogToDelete)
+      // it should send a request to delete dog
+
+      try {
+        const url = process.env.REACT_APP_API_URL + "/lobbies/" + idOfLobbyToDelete
+
+        const deleteLobbyResponse = await fetch(url, {
+          credentials: 'include',
+          method: 'DELETE'
+        })
+        const deleteLobbyJson = await deleteLobbyResponse.json()
+        console.log("deleteLobbyJson", deleteLobbyJson)
+
+        if(deleteLobbyResponse.status === 200) {
+
+          this.setState({
+            lobbies: this.state.lobbies.filter(lobby => lobby.id !== idOfLobbyToDelete)
+          })
+        }
+      } catch(err) {
+        console.log("Error deleting lobby: ", err)
+      }
+
+    }
+
   createLobby = async (lobby) => {
     // console.log("here is the dog you want to add")
     // console.log(dogToAdd)
@@ -80,6 +106,8 @@ export default class LobbyContainer extends Component {
       console.log("Error adding dog", err)
     }
   }
+
+
 
   editLobby = (idOfLobbyToEdit) => {
     console.log("you are trying to edit Lobby with id: ", idOfLobbyToEdit)
@@ -108,7 +136,7 @@ export default class LobbyContainer extends Component {
       if(updateLobbyResponse.status === 200) {
         const lobbies = this.state.lobbies
         const indexOfLobbyBeingUpdated = lobbies.findIndex(lobby => lobby._id === this.state.idOfLobbyToEdit)
-        lobbies[indexOfLobbyBeingUpdated] = updateLobbyJson.data
+        lobbies[indexOfLobbyBeingUpdated] = updateLobbyJson
         this.setState({
           lobbies: lobbies,
           idOfLobbyToEdit: -1 // close the modal
@@ -150,7 +178,7 @@ export default class LobbyContainer extends Component {
       if(updatePlayerResponse.status === 200) {
         const lobbies = this.state.lobbies
         const indexOfLobbyBeingUpdated = lobbies.findIndex(lobby => lobby._id === this.state.idOfLobbyToEditForPlayer)
-        lobbies[indexOfLobbyBeingUpdated] = updatePlayerJson.data
+        lobbies[indexOfLobbyBeingUpdated] = updatePlayerJson
         this.setState({
           lobbies: lobbies,
           idOfLobbyToEditForPlayer: -1
@@ -180,6 +208,7 @@ export default class LobbyContainer extends Component {
         lobbies={this.state.lobbies}
         editLobby={this.editLobby}
         addPlayers={this.addPlayers}
+        deleteLobby={this.deleteLobby}
         />
         {
           this.state.idOfLobbyToEdit !== -1
